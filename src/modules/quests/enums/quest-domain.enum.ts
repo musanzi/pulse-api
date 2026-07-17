@@ -1,0 +1,8 @@
+export enum QuestDomain {
+  CODING = 'CODING',
+  FINANCE = 'FINANCE',
+  AGRITECH = 'AGRITECH',
+  MINING = 'MINING',
+  ENERGY = 'ENERGY',
+  LOGISTICS = 'LOGISTICS'
+}
