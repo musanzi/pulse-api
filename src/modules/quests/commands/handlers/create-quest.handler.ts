@@ -15,11 +15,13 @@ export class CreateQuestHandler implements ICommandHandler<CreateQuestCommand, Q
   ) {}
 
   async execute(command: CreateQuestCommand): Promise<Quest> {
+    const { dto, createdById } = command;
+
     try {
-      return await this.repository.save(this.repository.create(command.dto));
+      return await this.repository.save(this.repository.create({ ...dto, createdById }));
     } catch (error) {
       this.logger.error(
-        `Create quest failed title="${command.dto.title}": ${error instanceof Error ? error.message : String(error)}`
+        `Create quest failed title="${dto.title}": ${error instanceof Error ? error.message : String(error)}`
       );
       throw new BadRequestException('Création de la quête impossible');
     }

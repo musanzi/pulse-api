@@ -17,7 +17,8 @@ export class FindQuestByIdHandler implements IQueryHandler<FindQuestByIdQuery, Q
   async execute(query: FindQuestByIdQuery): Promise<Quest> {
     try {
       return await this.repository.findOneOrFail({
-        where: { id: query.id }
+        where: { id: query.id },
+        relations: { deliverables: true, skills: true }
       });
     } catch (error) {
       this.logger.error(

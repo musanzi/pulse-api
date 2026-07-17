@@ -1,6 +1,8 @@
 import { AbstractEntity } from '@/modules/database/abstract.entity';
-import { Column, Entity } from 'typeorm';
+import { Column, Entity, OneToMany } from 'typeorm';
 import { QuestDomain, QuestLevel, QuestStatus } from '../enums';
+import { QuestDeliverable } from './quest-deliverable.entity';
+import { QuestSkill } from './quest-skill.entity';
 
 @Entity()
 export class Quest extends AbstractEntity {
@@ -26,7 +28,13 @@ export class Quest extends AbstractEntity {
   @Column({ type: 'uuid' })
   organisationId: string;
 
-  // Authoring member — populated from the authenticated user in a later PR.
+  // Authoring member — populated from the authenticated user on create.
   @Column({ type: 'uuid', nullable: true })
   createdById: string;
+
+  @OneToMany(() => QuestDeliverable, (deliverable) => deliverable.quest)
+  deliverables: QuestDeliverable[];
+
+  @OneToMany(() => QuestSkill, (skill) => skill.quest)
+  skills: QuestSkill[];
 }

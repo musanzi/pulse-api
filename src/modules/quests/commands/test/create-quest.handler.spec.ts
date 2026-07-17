@@ -36,10 +36,10 @@ describe('CreateQuestHandler', () => {
     repository.create.mockReturnValueOnce(quest);
     repository.save.mockResolvedValueOnce(quest);
 
-    const result = await handler.execute(new CreateQuestCommand(dto));
+    const result = await handler.execute(new CreateQuestCommand(dto, 'user-id'));
 
     expect(result).toBe(quest);
-    expect(repository.create).toHaveBeenCalledWith(dto);
+    expect(repository.create).toHaveBeenCalledWith({ ...dto, createdById: 'user-id' });
     expect(repository.save).toHaveBeenCalledWith(quest);
   });
 

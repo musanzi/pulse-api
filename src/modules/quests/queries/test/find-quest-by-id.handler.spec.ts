@@ -30,7 +30,10 @@ describe('FindQuestByIdHandler', () => {
     const result = await handler.execute(new FindQuestByIdQuery('quest-id'));
 
     expect(result).toBe(quest);
-    expect(repository.findOneOrFail).toHaveBeenCalledWith({ where: { id: 'quest-id' } });
+    expect(repository.findOneOrFail).toHaveBeenCalledWith({
+      where: { id: 'quest-id' },
+      relations: { deliverables: true, skills: true }
+    });
   });
 
   it('throws NotFoundException when the quest does not exist', async () => {
