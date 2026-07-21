@@ -13,8 +13,11 @@ import { ThrottlerGuard, ThrottlerModule } from '@nestjs/throttler';
 import { MailerModule } from '@nestjs-modules/mailer';
 import { CqrsModule } from '@nestjs/cqrs';
 import { RolesModule } from './modules/roles/roles.module';
-import { UsersModule } from './modules/users/users.module';
-import { StatsModule } from './modules/stats/stats.module';
+// Product modules (PM roadmap) — each groups the underlying technical modules.
+import { TalentProfileModule } from './modules/talent-profile/talent-profile.module';
+import { MatchingModule } from './modules/matching/matching.module';
+import { CollaborationModule } from './modules/collaboration/collaboration.module';
+import { AdminModule } from './modules/admin/admin.module';
 
 @Module({
   imports: [
@@ -65,11 +68,15 @@ import { StatsModule } from './modules/stats/stats.module';
         }
       })
     }),
+    // Core / platform (shared foundation).
     DatabaseModule,
     AuthModule,
-    UsersModule,
     RolesModule,
-    StatsModule
+    // Product modules (PM roadmap).
+    TalentProfileModule, // Module 1 — Talent Profile Management
+    MatchingModule, // Module 2 — AI Matching & Recommendation Engine
+    CollaborationModule, // Module 3 — Messaging & Collaboration Hub
+    AdminModule // Module 4 — Admin & Analytics Dashboard
   ],
   providers: [
     { provide: APP_GUARD, useClass: AuthGuard },
