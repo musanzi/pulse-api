@@ -1,0 +1,8 @@
+export enum RecommendationStatus {
+  SUGGESTED = 'SUGGESTED',
+  VIEWED = 'VIEWED',
+  ACCEPTED = 'ACCEPTED',
+  REJECTED = 'REJECTED',
+  DISMISSED = 'DISMISSED',
+  COMPLETED = 'COMPLETED'
+}
