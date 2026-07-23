@@ -1,0 +1,7 @@
+export enum FeedbackType {
+  HELPFUL = 'HELPFUL',
+  NOT_HELPFUL = 'NOT_HELPFUL',
+  IRRELEVANT = 'IRRELEVANT',
+  TOO_HARD = 'TOO_HARD',
+  TOO_EASY = 'TOO_EASY'
+}
